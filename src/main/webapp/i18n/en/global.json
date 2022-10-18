@@ -99,7 +99,9 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "key": "Key",
+      "block": "Block"
     },
     "detail": {
       "field": "Field",

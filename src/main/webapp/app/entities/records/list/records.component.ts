@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IRecords } from '../records.model';
@@ -9,6 +9,7 @@ import { IRecords } from '../records.model';
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { RecordsService } from '../service/records.service';
 import { RecordsDeleteDialogComponent } from '../delete/records-delete-dialog.component';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'jhi-records',
@@ -23,6 +24,7 @@ export class RecordsComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  isSaving = false;
 
   constructor(
     protected recordsService: RecordsService,
@@ -113,5 +115,33 @@ export class RecordsComponent implements OnInit {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  generateSecurityKey(records: IRecords): void {
+    this.subscribeToSaveResponse(this.recordsService.generateSecurityKey(records));
+  }
+  generateBlock(records: IRecords): void {
+    this.subscribeToSaveResponse(this.recordsService.generateBlock(records));
+  }
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IRecords>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
+  }
+
+  protected onSaveSuccess(): void {
+    this.previousState();
+  }
+
+  protected onSaveError(): void {
+    // Api for inheritance.
+  }
+
+  protected onSaveFinalize(): void {
+    this.isSaving = false;
+  }
+  previousState(): void {
+    window.history.back();
   }
 }

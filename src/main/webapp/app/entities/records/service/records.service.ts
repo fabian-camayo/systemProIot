@@ -18,7 +18,18 @@ export class RecordsService {
   public resourceUrl = this.applicationConfigService.getEndpointFor('api/records');
 
   constructor(protected http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
-
+  generateSecurityKey(records: IRecords): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(records);
+    return this.http
+      .post<IRecords>(`${this.resourceUrl}/create/key`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+  generateBlock(records: IRecords): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(records);
+    return this.http
+      .post<IRecords>(`${this.resourceUrl}/create/block`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
   create(records: IRecords): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(records);
     return this.http

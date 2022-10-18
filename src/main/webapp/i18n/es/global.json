@@ -99,7 +99,9 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Guardar",
-      "view": "Vista"
+      "view": "Vista",
+      "key": "Llave",
+      "block": "Bloque"
     },
     "detail": {
       "field": "Campo",

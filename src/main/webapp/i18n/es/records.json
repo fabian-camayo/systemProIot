@@ -2,31 +2,31 @@
   "systemProIotApp": {
     "records": {
       "home": {
-        "title": "Records",
+        "title": "Historial",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nuevo Records",
-        "createOrEditLabel": "Crear o editar Records",
-        "notFound": "Ningún Records encontrado"
+        "createLabel": "Crear nuevo Historial",
+        "createOrEditLabel": "Crear o editar Historial",
+        "notFound": "Ningún Historial encontrado"
       },
-      "created": "Un nuevo Records ha sido creado con el identificador {{ param }}",
-      "updated": "Un Records ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Records ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Historial ha sido creado con el identificador {{ param }}",
+      "updated": "Un Historial ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Historial ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Records {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Historial {{ id }}?"
       },
       "detail": {
-        "title": "Records"
+        "title": "Historial"
       },
       "id": "ID",
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "nameProcess": "Name Process",
-      "detailsProcess": "Details Process",
-      "device": "Device",
-      "codeDevice": "Code Device",
-      "descriptionDevice": "Description Device",
-      "owner": "Owner",
-      "securityKey": "Security Key"
+      "startDate": "Fecha Inicio",
+      "endDate": "Fecha Fin",
+      "nameProcess": "Nombre Proceso",
+      "detailsProcess": "Hash",
+      "device": "Dispositivo",
+      "codeDevice": "Codigo Dispositivo",
+      "descriptionDevice": "Descriptcion",
+      "owner": "Propietario",
+      "securityKey": "Llave de seguridad"
     }
   }
 }
