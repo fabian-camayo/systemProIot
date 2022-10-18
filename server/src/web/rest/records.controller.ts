@@ -70,6 +70,9 @@ export class RecordsController {
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
     async post(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
+        var date = new Date(recordsDTO.startDate);
+        date.setDate(date.getDate()+1)
+        recordsDTO.endDate = date;
         const created = await this.recordsService.save(recordsDTO, req.user?.login);
         HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
         return created;
@@ -84,8 +87,16 @@ export class RecordsController {
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
     async generateSecurityKey(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
-        const created = await this.recordsService.save(recordsDTO, req.user?.login);
-        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
+        const SHA256 = require('crypto-js/sha256');
+        const bodyKey = {
+            "startDate": recordsDTO.startDate,
+            "endDate": recordsDTO.endDate,
+            "owner": recordsDTO.owner,
+            "device": recordsDTO.device
+        }
+        const securityKey = SHA256(bodyKey).toString();
+        recordsDTO.securityKey = securityKey;
+        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', recordsDTO.id);
         return await this.recordsService.update(recordsDTO, req.user?.login);
     }
     @PostMethod('/create/block')

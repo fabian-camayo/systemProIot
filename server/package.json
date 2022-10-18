@@ -53,6 +53,7 @@
     "class-transformer": "0.3.1",
     "class-validator": "0.13.1",
     "cloud-config-client": "1.4.2",
+    "crypto-js": "^4.1.1",
     "dotenv": "8.2.0",
     "eureka-js-client": "4.5.0",
     "js-yaml": "4.1.0",
