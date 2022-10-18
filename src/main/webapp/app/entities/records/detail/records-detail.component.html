@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="records">
+      <h2 data-cy="recordsDetailsHeading"><span jhiTranslate="systemProIotApp.records.detail.title">Records</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ records.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ records.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ records.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.nameProcess">Name Process</span></dt>
+        <dd>
+          <span>{{ records.nameProcess }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.detailsProcess">Details Process</span></dt>
+        <dd>
+          <span>{{ records.detailsProcess }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.device">Device</span></dt>
+        <dd>
+          <span>{{ records.device }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.codeDevice">Code Device</span></dt>
+        <dd>
+          <span>{{ records.codeDevice }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.descriptionDevice">Description Device</span></dt>
+        <dd>
+          <span>{{ records.descriptionDevice }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.owner">Owner</span></dt>
+        <dd>
+          <span>{{ records.owner }}</span>
+        </dd>
+        <dt><span jhiTranslate="systemProIotApp.records.securityKey">Security Key</span></dt>
+        <dd>
+          <span>{{ records.securityKey }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/records', records.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

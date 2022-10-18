@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="RecordsHeading">
+    <span jhiTranslate="systemProIotApp.records.home.title">Records</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="systemProIotApp.records.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-records"
+        [routerLink]="['/records/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="systemProIotApp.records.home.createLabel"> Create a new Records </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="records?.length === 0">
+    <span jhiTranslate="systemProIotApp.records.home.notFound">No records found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="records && records.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="startDate">
+            <span jhiTranslate="systemProIotApp.records.startDate">Start Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endDate">
+            <span jhiTranslate="systemProIotApp.records.endDate">End Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nameProcess">
+            <span jhiTranslate="systemProIotApp.records.nameProcess">Name Process</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="detailsProcess">
+            <span jhiTranslate="systemProIotApp.records.detailsProcess">Details Process</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="device">
+            <span jhiTranslate="systemProIotApp.records.device">Device</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="codeDevice">
+            <span jhiTranslate="systemProIotApp.records.codeDevice">Code Device</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descriptionDevice">
+            <span jhiTranslate="systemProIotApp.records.descriptionDevice">Description Device</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="owner">
+            <span jhiTranslate="systemProIotApp.records.owner">Owner</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="securityKey">
+            <span jhiTranslate="systemProIotApp.records.securityKey">Security Key</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let records of records; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/records', records.id, 'view']">{{ records.id }}</a>
+          </td>
+          <td>{{ records.startDate | formatMediumDate }}</td>
+          <td>{{ records.endDate | formatMediumDate }}</td>
+          <td>{{ records.nameProcess }}</td>
+          <td>{{ records.detailsProcess }}</td>
+          <td>{{ records.device }}</td>
+          <td>{{ records.codeDevice }}</td>
+          <td>{{ records.descriptionDevice }}</td>
+          <td>{{ records.owner }}</td>
+          <td>{{ records.securityKey }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/records', records.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/records', records.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(records)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="records && records.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

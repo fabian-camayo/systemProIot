@@ -1,0 +1,52 @@
+{
+  "name": "Records",
+  "fields": [
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "nameProcess",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "detailsProcess",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "device",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeDevice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descriptionDevice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "owner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "securityKey",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "records",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20221018054001"
+}

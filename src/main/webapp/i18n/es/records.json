@@ -1,0 +1,32 @@
+{
+  "systemProIotApp": {
+    "records": {
+      "home": {
+        "title": "Records",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Records",
+        "createOrEditLabel": "Crear o editar Records",
+        "notFound": "Ningún Records encontrado"
+      },
+      "created": "Un nuevo Records ha sido creado con el identificador {{ param }}",
+      "updated": "Un Records ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Records ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Records {{ id }}?"
+      },
+      "detail": {
+        "title": "Records"
+      },
+      "id": "ID",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "nameProcess": "Name Process",
+      "detailsProcess": "Details Process",
+      "device": "Device",
+      "codeDevice": "Code Device",
+      "descriptionDevice": "Description Device",
+      "owner": "Owner",
+      "securityKey": "Security Key"
+    }
+  }
+}

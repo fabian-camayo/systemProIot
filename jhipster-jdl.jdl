@@ -1,0 +1,21 @@
+
+entity Records {
+	startDate LocalDate
+	endDate LocalDate
+	nameProcess String
+    detailsProcess String
+    device String
+    codeDevice String
+    descriptionDevice String
+  	owner String
+	securityKey String
+}
+entity BlockChain {
+	block String
+}
+paginate Records, BlockChain with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl
+filter Records, BlockChain

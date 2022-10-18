@@ -49,6 +49,8 @@
     "cacheProvider": "ehcache",
     "buildTool": "maven",
     "enableHibernateCache": true,
-    "reactive": false
+    "reactive": false,
+    "entities": ["Records", "BlockChain"],
+    "lastLiquibaseTimestamp": 1666071602000
   }
 }

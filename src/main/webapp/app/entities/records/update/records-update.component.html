@@ -1,0 +1,148 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-records-heading" data-cy="RecordsCreateUpdateHeading" jhiTranslate="systemProIotApp.records.home.createOrEditLabel">
+        Create or edit a Records
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.startDate" for="field_startDate">Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="text"
+              class="form-control"
+              name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
+              formControlName="startDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.endDate" for="field_endDate">End Date</label>
+          <div class="input-group">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="text"
+              class="form-control"
+              name="endDate"
+              ngbDatepicker
+              #endDateDp="ngbDatepicker"
+              formControlName="endDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.nameProcess" for="field_nameProcess">Name Process</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nameProcess"
+            id="field_nameProcess"
+            data-cy="nameProcess"
+            formControlName="nameProcess"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.detailsProcess" for="field_detailsProcess"
+            >Details Process</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="detailsProcess"
+            id="field_detailsProcess"
+            data-cy="detailsProcess"
+            formControlName="detailsProcess"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.device" for="field_device">Device</label>
+          <input type="text" class="form-control" name="device" id="field_device" data-cy="device" formControlName="device" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.codeDevice" for="field_codeDevice">Code Device</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeDevice"
+            id="field_codeDevice"
+            data-cy="codeDevice"
+            formControlName="codeDevice"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.descriptionDevice" for="field_descriptionDevice"
+            >Description Device</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descriptionDevice"
+            id="field_descriptionDevice"
+            data-cy="descriptionDevice"
+            formControlName="descriptionDevice"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.owner" for="field_owner">Owner</label>
+          <input type="text" class="form-control" name="owner" id="field_owner" data-cy="owner" formControlName="owner" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="systemProIotApp.records.securityKey" for="field_securityKey">Security Key</label>
+          <input
+            type="text"
+            class="form-control"
+            name="securityKey"
+            id="field_securityKey"
+            data-cy="securityKey"
+            formControlName="securityKey"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

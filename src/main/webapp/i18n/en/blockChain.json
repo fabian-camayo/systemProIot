@@ -1,0 +1,24 @@
+{
+  "systemProIotApp": {
+    "blockChain": {
+      "home": {
+        "title": "Block Chains",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Block Chain",
+        "createOrEditLabel": "Create or edit a Block Chain",
+        "notFound": "No Block Chains found"
+      },
+      "created": "A new Block Chain is created with identifier {{ param }}",
+      "updated": "A Block Chain is updated with identifier {{ param }}",
+      "deleted": "A Block Chain is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Block Chain {{ id }}?"
+      },
+      "detail": {
+        "title": "Block Chain"
+      },
+      "id": "ID",
+      "block": "Block"
+    }
+  }
+}
