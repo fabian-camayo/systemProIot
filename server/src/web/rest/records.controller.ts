@@ -74,7 +74,34 @@ export class RecordsController {
         HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
         return created;
     }
-
+    @PostMethod('/create/key')
+    @Roles(RoleType.ADMIN)
+    @ApiOperation({ title: 'Create key' })
+    @ApiResponse({
+        status: 201,
+        description: 'The record has been successfully created.',
+        type: RecordsDTO,
+    })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
+    async generateSecurityKey(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
+        const created = await this.recordsService.save(recordsDTO, req.user?.login);
+        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
+        return await this.recordsService.update(recordsDTO, req.user?.login);
+    }
+    @PostMethod('/create/block')
+    @Roles(RoleType.ADMIN)
+    @ApiOperation({ title: 'Create block' })
+    @ApiResponse({
+        status: 201,
+        description: 'The record has been successfully created.',
+        type: RecordsDTO,
+    })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
+    async generateBlock(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
+        const created = await this.recordsService.save(recordsDTO, req.user?.login);
+        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
+        return created;
+    }    
     @Put('/')
     @Roles(RoleType.ADMIN)
     @ApiOperation({ title: 'Update records' })
