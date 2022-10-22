@@ -11,6 +11,7 @@
         "blockChain": "Block Registry",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
+      "documentation": "Documentation",
       "account": {
         "main": "Account",
         "settings": "Settings",

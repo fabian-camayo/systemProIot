@@ -25,6 +25,14 @@
           </span>
         </a>
       </li>
+      <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link" routerLink="documentation" (click)="collapseNavbar()">
+          <span>
+            <fa-icon icon="book"></fa-icon>
+            <span jhiTranslate="global.menu.documentation">Documentation</span>
+          </span>
+        </a>
+      </li>
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
       <li
         *ngSwitchCase="true"

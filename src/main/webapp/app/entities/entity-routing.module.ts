@@ -14,6 +14,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'systemProIotApp.blockChain.home.title' },
         loadChildren: () => import('./block-chain/block-chain.module').then(m => m.BlockChainModule),
       },
+      {
+        path: 'documentation',
+        data: { pageTitle: 'systemProIotApp.documentation.home.title' },
+        loadChildren: () => import('./documentation/documentation.module').then(m => m.DocumentationModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
