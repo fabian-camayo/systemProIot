@@ -20,6 +20,9 @@ import { AuthGuard, Roles, RolesGuard, RoleType } from '../../security';
 import { HeaderUtil } from '../../client/header-util';
 import { Request } from '../../client/request';
 import { LoggingInterceptor } from '../../client/interceptors/logging.interceptor';
+import { BlockChainDTO } from '../../service/dto/block-chain.dto';
+import { BlockChainService } from '../../service/block-chain.service';
+import { sha256, sha224 } from 'js-sha256';
 
 @Controller('api/records')
 @UseGuards(AuthGuard, RolesGuard)
@@ -29,7 +32,8 @@ import { LoggingInterceptor } from '../../client/interceptors/logging.intercepto
 export class RecordsController {
     logger = new Logger('RecordsController');
 
-    constructor(private readonly recordsService: RecordsService) {}
+    constructor(private readonly recordsService: RecordsService,
+        private readonly blockChainService: BlockChainService) {}
 
     @Get('/')
     @Roles(RoleType.USER)
@@ -87,15 +91,15 @@ export class RecordsController {
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
     async generateSecurityKey(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
-        const SHA256 = require('crypto-js/sha256');
         const bodyKey = {
             "startDate": recordsDTO.startDate,
             "endDate": recordsDTO.endDate,
             "owner": recordsDTO.owner,
             "device": recordsDTO.device
         }
-        const securityKey = SHA256(bodyKey).toString();
-        recordsDTO.securityKey = securityKey;
+        console.log(bodyKey);
+        recordsDTO.securityKey = this.createHash(bodyKey);
+        console.log(recordsDTO);
         HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', recordsDTO.id);
         return await this.recordsService.update(recordsDTO, req.user?.login);
     }
@@ -109,9 +113,57 @@ export class RecordsController {
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
     async generateBlock(@Req() req: Request, @Body() recordsDTO: RecordsDTO): Promise<RecordsDTO> {
-        const created = await this.recordsService.save(recordsDTO, req.user?.login);
-        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', created.id);
-        return created;
+        const idPrevious = recordsDTO.id-1;
+        console.log(recordsDTO.id)
+        console.log(idPrevious);
+        var block = {};
+        if(idPrevious ==0){
+            block = {
+                "index": recordsDTO.id,
+                "endDate": recordsDTO.endDate,
+                "date": new Date(),
+                "data": recordsDTO,
+                "previousHash": "",
+                "hash": this.createHash({
+                    "index": recordsDTO.id,
+                    "endDate": recordsDTO.endDate,
+                    "date": new Date(),
+                    "data": recordsDTO,
+                    "previousHash": ""  
+                })
+            }
+        }else{
+            const previousRecord = await this.recordsService.findById(idPrevious);
+            block = {
+                "index": recordsDTO.id,
+                "endDate": recordsDTO.endDate,
+                "date": new Date(),
+                "data": recordsDTO,
+                "previousHash": previousRecord.detailsProcess,
+                "hash": this.createHash({
+                    "index": recordsDTO.id,
+                    "endDate": recordsDTO.endDate,
+                    "date": new Date(),
+                    "data": recordsDTO,
+                    "previousHash": previousRecord.detailsProcess,
+                })
+            }
+        }
+        recordsDTO.detailsProcess = block['hash'];
+        const updated = await this.recordsService.update(recordsDTO, req.user?.login);
+        var blockChainDTO = new BlockChainDTO();
+        blockChainDTO.block = JSON.stringify(block);
+        await this.blockChainService.save(blockChainDTO, req.user?.login);
+
+        HeaderUtil.addEntityCreatedHeaders(req.res, 'Records', recordsDTO.id);
+        return updated;
+    }
+    createHash(data:any){
+        var hash = sha256.create();
+            hash.update(JSON.stringify(data));
+            hash.hex();
+        console.log(hash);
+        return hash.toString();
     }    
     @Put('/')
     @Roles(RoleType.ADMIN)
