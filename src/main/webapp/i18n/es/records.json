@@ -2,7 +2,7 @@
   "systemProIotApp": {
     "records": {
       "home": {
-        "title": "Historial",
+        "title": "Historial de Procesos",
         "refreshListLabel": "Refrescar lista",
         "createLabel": "Crear nuevo Historial",
         "createOrEditLabel": "Crear o editar Historial",

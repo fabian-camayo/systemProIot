@@ -2,20 +2,20 @@
   "systemProIotApp": {
     "records": {
       "home": {
-        "title": "Records",
+        "title": "Process History",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Records",
-        "createOrEditLabel": "Create or edit a Records",
-        "notFound": "No Records found"
+        "createLabel": "Create a new History",
+        "createOrEditLabel": "Create or edit a History",
+        "notFound": "No History found"
       },
-      "created": "A new Records is created with identifier {{ param }}",
-      "updated": "A Records is updated with identifier {{ param }}",
-      "deleted": "A Records is deleted with identifier {{ param }}",
+      "created": "A new History is created with identifier {{ param }}",
+      "updated": "A History is updated with identifier {{ param }}",
+      "deleted": "A History is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Records {{ id }}?"
+        "question": "Are you sure you want to delete History {{ id }}?"
       },
       "detail": {
-        "title": "Records"
+        "title": "History"
       },
       "id": "ID",
       "startDate": "Start Date",

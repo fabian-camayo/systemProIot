@@ -2,20 +2,20 @@
   "systemProIotApp": {
     "blockChain": {
       "home": {
-        "title": "Block Chains",
+        "title": "Block Registry",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Block Chain",
-        "createOrEditLabel": "Create or edit a Block Chain",
-        "notFound": "No Block Chains found"
+        "createLabel": "Create a new BlockChain",
+        "createOrEditLabel": "Create or edit a BlockChain",
+        "notFound": "No BlockChains found"
       },
-      "created": "A new Block Chain is created with identifier {{ param }}",
-      "updated": "A Block Chain is updated with identifier {{ param }}",
-      "deleted": "A Block Chain is deleted with identifier {{ param }}",
+      "created": "A new BlockChain is created with identifier {{ param }}",
+      "updated": "A BlockChain is updated with identifier {{ param }}",
+      "deleted": "A BlockChain is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Block Chain {{ id }}?"
+        "question": "Are you sure you want to delete BlockChain {{ id }}?"
       },
       "detail": {
-        "title": "Block Chain"
+        "title": "BlockChain"
       },
       "id": "ID",
       "block": "Block"

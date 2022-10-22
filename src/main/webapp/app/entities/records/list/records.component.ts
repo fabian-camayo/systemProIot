@@ -131,7 +131,8 @@ export class RecordsComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    this.loadPage(1);
+    //this.previousState();
   }
 
   protected onSaveError(): void {

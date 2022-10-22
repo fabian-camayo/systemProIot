@@ -2,23 +2,23 @@
   "systemProIotApp": {
     "blockChain": {
       "home": {
-        "title": "Block Chains",
+        "title": "Registros de Bloques",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nuevo Block Chain",
-        "createOrEditLabel": "Crear o editar Block Chain",
-        "notFound": "Ningún Block Chains encontrado"
+        "createLabel": "Crear nuevo BlockChain",
+        "createOrEditLabel": "Crear o editar BlockChain",
+        "notFound": "Ningún BlockChains encontrado"
       },
-      "created": "Un nuevo Block Chain ha sido creado con el identificador {{ param }}",
-      "updated": "Un Block Chain ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Block Chain ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo BlockChain ha sido creado con el identificador {{ param }}",
+      "updated": "Un BlockChain ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un BlockChain ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Block Chain {{ id }}?"
+        "question": "¿Seguro que quiere eliminar BlockChain {{ id }}?"
       },
       "detail": {
-        "title": "Block Chain"
+        "title": "BlockChain"
       },
       "id": "ID",
-      "block": "Block"
+      "block": "Bloque"
     }
   }
 }
