@@ -41,7 +41,11 @@ describe('Records Controller', () => {
     });
 
     it('/GET all records ', async () => {
-        const getEntities: RecordsDTO[] = (await request(app.getHttpServer()).get('/api/records').expect(200)).body;
+        const getEntities: RecordsDTO[] = (
+            await request(app.getHttpServer())
+                .get('/api/records')
+                .expect(200)
+        ).body;
 
         expect(getEntities).toEqual(entityMock);
     });
@@ -58,7 +62,10 @@ describe('Records Controller', () => {
 
     it('/POST create records', async () => {
         const createdEntity: RecordsDTO = (
-            await request(app.getHttpServer()).post('/api/records').send(entityMock).expect(201)
+            await request(app.getHttpServer())
+                .post('/api/records')
+                .send(entityMock)
+                .expect(201)
         ).body;
 
         expect(createdEntity).toEqual(entityMock);
@@ -66,7 +73,10 @@ describe('Records Controller', () => {
 
     it('/PUT update records', async () => {
         const updatedEntity: RecordsDTO = (
-            await request(app.getHttpServer()).put('/api/records').send(entityMock).expect(201)
+            await request(app.getHttpServer())
+                .put('/api/records')
+                .send(entityMock)
+                .expect(201)
         ).body;
 
         expect(updatedEntity).toEqual(entityMock);

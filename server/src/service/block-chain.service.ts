@@ -29,7 +29,7 @@ export class BlockChainService {
         const resultList = await this.blockChainRepository.findAndCount(options);
         const blockChainDTO: BlockChainDTO[] = [];
         if (resultList && resultList[0]) {
-            resultList[0].forEach((blockChain) => blockChainDTO.push(BlockChainMapper.fromEntityToDTO(blockChain)));
+            resultList[0].forEach(blockChain => blockChainDTO.push(BlockChainMapper.fromEntityToDTO(blockChain)));
             resultList[0] = blockChainDTO;
         }
         return resultList;

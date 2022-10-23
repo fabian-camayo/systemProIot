@@ -29,7 +29,7 @@ export class RecordsService {
         const resultList = await this.recordsRepository.findAndCount(options);
         const recordsDTO: RecordsDTO[] = [];
         if (resultList && resultList[0]) {
-            resultList[0].forEach((records) => recordsDTO.push(RecordsMapper.fromEntityToDTO(records)));
+            resultList[0].forEach(records => recordsDTO.push(RecordsMapper.fromEntityToDTO(records)));
             resultList[0] = recordsDTO;
         }
         return resultList;

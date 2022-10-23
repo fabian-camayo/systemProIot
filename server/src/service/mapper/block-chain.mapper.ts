@@ -9,9 +9,9 @@ export class BlockChainMapper {
         if (!entityDTO) {
             return;
         }
-        let entity = new BlockChain();
+        const entity = new BlockChain();
         const fields = Object.getOwnPropertyNames(entityDTO);
-        fields.forEach((field) => {
+        fields.forEach(field => {
             entity[field] = entityDTO[field];
         });
         return entity;
@@ -21,11 +21,11 @@ export class BlockChainMapper {
         if (!entity) {
             return;
         }
-        let entityDTO = new BlockChainDTO();
+        const entityDTO = new BlockChainDTO();
 
         const fields = Object.getOwnPropertyNames(entity);
 
-        fields.forEach((field) => {
+        fields.forEach(field => {
             entityDTO[field] = entity[field];
         });
 

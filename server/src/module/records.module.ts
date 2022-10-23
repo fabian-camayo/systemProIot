@@ -9,7 +9,7 @@ import { BlockChainRepository } from '../repository/block-chain.repository';
 @Module({
     imports: [TypeOrmModule.forFeature([RecordsRepository, BlockChainRepository])],
     controllers: [RecordsController],
-    providers: [RecordsService,BlockChainService],
-    exports: [RecordsService,BlockChainService],
+    providers: [RecordsService, BlockChainService],
+    exports: [RecordsService, BlockChainService],
 })
 export class RecordsModule {}

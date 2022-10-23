@@ -41,8 +41,11 @@ describe('BlockChain Controller', () => {
     });
 
     it('/GET all block-chains ', async () => {
-        const getEntities: BlockChainDTO[] = (await request(app.getHttpServer()).get('/api/block-chains').expect(200))
-            .body;
+        const getEntities: BlockChainDTO[] = (
+            await request(app.getHttpServer())
+                .get('/api/block-chains')
+                .expect(200)
+        ).body;
 
         expect(getEntities).toEqual(entityMock);
     });
@@ -59,7 +62,10 @@ describe('BlockChain Controller', () => {
 
     it('/POST create block-chains', async () => {
         const createdEntity: BlockChainDTO = (
-            await request(app.getHttpServer()).post('/api/block-chains').send(entityMock).expect(201)
+            await request(app.getHttpServer())
+                .post('/api/block-chains')
+                .send(entityMock)
+                .expect(201)
         ).body;
 
         expect(createdEntity).toEqual(entityMock);
@@ -67,7 +73,10 @@ describe('BlockChain Controller', () => {
 
     it('/PUT update block-chains', async () => {
         const updatedEntity: BlockChainDTO = (
-            await request(app.getHttpServer()).put('/api/block-chains').send(entityMock).expect(201)
+            await request(app.getHttpServer())
+                .put('/api/block-chains')
+                .send(entityMock)
+                .expect(201)
         ).body;
 
         expect(updatedEntity).toEqual(entityMock);
