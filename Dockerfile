@@ -22,4 +22,4 @@ RUN npm install
 
 EXPOSE 8081
 
-ENTRYPOINT ["npm", "run", "start:app" ]
+ENTRYPOINT ["npm", "run", "build:app:dev" ]
