@@ -10,7 +10,7 @@ export class DocumentationDetailComponent implements OnInit {
   constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({}) => {});
+    this.activatedRoute.data.subscribe();
   }
 
   previousState(): void {

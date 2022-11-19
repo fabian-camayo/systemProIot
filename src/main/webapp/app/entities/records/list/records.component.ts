@@ -25,13 +25,21 @@ export class RecordsComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   isSaving = false;
-
   constructor(
     protected recordsService: RecordsService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected modalService: NgbModal
   ) {}
+  generateSecurityKey(records: IRecords): void {
+    this.subscribeToSaveResponse(this.recordsService.generateSecurityKey(records));
+  }
+  generateBlock(records: IRecords): void {
+    this.subscribeToSaveResponse(this.recordsService.generateBlock(records));
+  }
+  previousState(): void {
+    window.history.back();
+  }
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
@@ -117,12 +125,6 @@ export class RecordsComponent implements OnInit {
     this.ngbPaginationPage = this.page ?? 1;
   }
 
-  generateSecurityKey(records: IRecords): void {
-    this.subscribeToSaveResponse(this.recordsService.generateSecurityKey(records));
-  }
-  generateBlock(records: IRecords): void {
-    this.subscribeToSaveResponse(this.recordsService.generateBlock(records));
-  }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IRecords>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe(
       () => this.onSaveSuccess(),
@@ -132,7 +134,6 @@ export class RecordsComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.loadPage(1);
-    //this.previousState();
   }
 
   protected onSaveError(): void {
@@ -141,8 +142,5 @@ export class RecordsComponent implements OnInit {
 
   protected onSaveFinalize(): void {
     this.isSaving = false;
-  }
-  previousState(): void {
-    window.history.back();
   }
 }
